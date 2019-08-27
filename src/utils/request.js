@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
+import server from '@/server'
 import { getToken } from '@/utils/auth'
 
 // create an axios instance
@@ -14,7 +15,16 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-
+    const ruleArr = config.url.split('!')
+    let type, url
+    if (ruleArr.length === 1) {
+      type = 'default'
+      url = ruleArr[0]
+    } else {
+      type = config.url.split('!')[0]
+      url = config.url.split('!')[1]
+    }
+    config.url = server[type] + url
     if (store.getters.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
@@ -48,17 +58,17 @@ service.interceptors.response.use(
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 20000) {
       Message({
-        message: res.message || 'Error',
+        message: res.message || '未知错误',
         type: 'error',
-        duration: 5 * 1000
+        duration: 2 * 1000
       })
 
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
         // to re-login
-        MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
+        MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
           store.dispatch('user/resetToken').then(() => {
@@ -66,7 +76,7 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.message || 'Error'))
+      return Promise.reject(new Error(res.message || '未知错误'))
     } else {
       return res
     }
@@ -76,7 +86,7 @@ service.interceptors.response.use(
     Message({
       message: error.message,
       type: 'error',
-      duration: 5 * 1000
+      duration: 2 * 1000
     })
     return Promise.reject(error)
   }
