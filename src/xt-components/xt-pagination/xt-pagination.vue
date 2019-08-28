@@ -1,9 +1,9 @@
 <template lang="pug">
   el-pagination.xt-pagination(
     :background="true"
-    :total="totals"
+    :total="total"
     :page-size="pageSize"
-    :current-page="page"
+    :current-page="currentPage"
     layout="total,sizes, prev, pager, next, jumper"
     @prev-click="handlePrevClick"
     @next-click="handleNextClick"
@@ -23,19 +23,21 @@ export default {
     page: {
       type: Number,
       defualt: 1
-    }
-  },
-  computed: {
-    totals () {
-      // return this.total == 0 ? 1 : this.total
-      return this.total
+    },
+    size: {
+      type: Number,
+      default: 10
     }
   },
   data () {
     return {
-      pageSize: 100,
+      pageSize: 10,
       currentPage: 1
     }
+  },
+  created () {
+    this.currentPage = this.page
+    this.pageSize = this.size
   },
   methods: {
     handleSizeChange (pageSize) {
@@ -52,8 +54,8 @@ export default {
       this.change(currentPage)
     },
     change (currentPage) {
-      if (this.totals && this.pageSize && currentPage) {
-        if (Math.ceil(this.totals / this.pageSize)  < currentPage) return false
+      if (this.total && this.pageSize && currentPage) {
+        if (Math.ceil(this.total / this.pageSize)  < currentPage) return false
       }
       this.currentPage = currentPage
       this.$emit('change', { page: this.currentPage, pageSize: this.pageSize })

@@ -42,7 +42,7 @@ export default {
       'userinfo'
     ])
   },
-  data () {
+  data() {
     return {
       avatar
     }

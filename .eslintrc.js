@@ -9,7 +9,7 @@ module.exports = {
     node: true,
     es6: true,
   },
-  extends: ['plugin:vue/recommended', 'eslint:recommended'],
+  extends: ['plugin:vue/essential', 'eslint:recommended'],
 
   // add your custom rules here
   //it is base on https://github.com/vuejs/eslint-config-vue
@@ -123,7 +123,7 @@ module.exports = {
     'no-proto': 2,
     'no-redeclare': 2,
     'no-regex-spaces': 2,
-    'no-return-assign': [2, 'except-parens'],
+    'no-return-assign': 0,
     'no-self-assign': 2,
     'no-self-compare': 2,
     'no-sequences': 2,
@@ -132,7 +132,7 @@ module.exports = {
     'no-sparse-arrays': 2,
     'no-this-before-super': 2,
     'no-throw-literal': 2,
-    'no-trailing-spaces': 2,
+    'no-trailing-spaces': 0,
     'no-undef': 2,
     'no-undef-init': 2,
     'no-unexpected-multiline': 2,

@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: 'user',
+  name: 'User',
   data() {
     return {
 
@@ -16,7 +16,7 @@ export default {
   },
   methods: {
 
-  },
+  }
 }
 </script>
 

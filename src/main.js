@@ -18,16 +18,17 @@ import router from './router'
 import xtUi from './xt-components/xt-ui/index'
 import '@/icons' // icon
 import '@/permission' // permission control
+import api from '@/api'
 
 // set ElementUI lang to EN
 // Vue.use(ElementUI, { locale })
 Vue.use(ElementUI)
 Vue.use(xtUi)
+Vue.prototype.$api = api
 
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
-
 // 自定义指令
 Object.keys(directives).forEach(key => {
   Vue.directive(key, directives[key])

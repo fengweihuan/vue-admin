@@ -7,18 +7,18 @@
 <script>
 export default {
   name: 'App',
-  provide () {
+  provide() {
     return {
       reload: this.reload
     }
   },
-  data () {
+  data() {
     return {
       isRouterAlive: true
     }
   },
   methods: {
-    reload () {
+    reload() {
       this.isRouterAlive = false
       this.$nextTick(() => {
         this.isRouterAlive = true
