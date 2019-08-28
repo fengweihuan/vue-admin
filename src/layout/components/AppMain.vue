@@ -1,8 +1,10 @@
 <template>
   <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
-      <router-view :key="key" />
-    </transition>
+    <el-card :body-style="{ padding: '8px' }">
+      <transition name="fade-transform" mode="out-in">
+        <router-view :key="key" />
+      </transition>
+    </el-card>
   </section>
 </template>
 
@@ -22,8 +24,11 @@ export default {
   /*50 = navbar  */
   min-height: calc(100vh - 50px);
   width: 100%;
+  padding: 8px;
   position: relative;
   overflow: hidden;
+  font-size: 14px;
+  color: #323232
 }
 .fixed-header+.app-main {
   padding-top: 50px;
