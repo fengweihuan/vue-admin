@@ -1,10 +1,11 @@
 <template lang='pug'>
   .xt-table
     .header
-      xt-search(v-if="searchList.length > 0" :searchList="searchList" ref="search" @submit="searchHandle")
+      xt-search(v-if="searchList.length > 0" :hasResetBtn="hasResetBtn" @reset="$emit('reset')" :searchList="searchList" ref="search" @submit="searchHandle")
       .btn_wrap
         el-button(v-if="create" type="primary" icon="el-icon-plus" size="small" @click="$refs.editDialog.open()") 新增
         el-button(v-if="deleteBatch" type="danger" icon="el-icon-delete" size="small" @click="deleteHandle('batch')") 批量删除
+        slot(name="button")
     el-table(
       :height="height"
       v-loading="loading"
@@ -14,12 +15,11 @@
       :summary-method="getSummaries"
       border
     )
-      el-table-column(v-if="selection || deleteBatch" type="selection" width="60px")
-      el-table-column(v-if="index" type="index" label="序号" width="60px")
+      el-table-column(v-if="selection || deleteBatch" type="selection" width="60px" align="center")
       el-table-column(
         v-for="item in columns"
         :key="item.prop"
-        :type="item.type ? item.type : ''"
+        :type="item.type"
         :label="item.label ? item.label : ''"
         :prop="item.prop ? item.prop : ''"
         :width="item.width ? item.width : ''"
@@ -29,7 +29,7 @@
       )
         template(slot-scope="scope")
           .div(v-if="item.html" v-html="item.html(scope, item.prop)")
-          .div(v-else) {{ scope.row[item.prop] }}
+          .div(v-else) {{ item.type === 'index' ? scope.$index + 1 : scope.row[item.prop] }}
       el-table-column(label="操作" align="center" width="100px" v-if="edit || deleted")
         template(slot-scope="scope")
           .edit_main
@@ -49,6 +49,11 @@
 export default {
   name: 'xt-table',
   props: {
+    // 序号
+    index: {
+      type: Boolean,
+      default: true
+    },
     columns: {
       required: true,
       type: Array,
@@ -120,15 +125,14 @@ export default {
       type: String,
       default: '_id'
     },
-    // 序号
-    index: {
-      type: Boolean,
-      default: true
-    },
     // 合计
     summary: {
       type: Array,
       default: () => []
+    },
+    hasResetBtn: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -200,7 +204,7 @@ export default {
     },
     searchHandle(params) {
       this.searchParams = params
-      this.getData()
+      this.$refs.pagination.change(1)
     },
     // 设置合计
     getSummaries (param) {

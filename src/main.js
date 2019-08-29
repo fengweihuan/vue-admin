@@ -8,7 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import '@/styles/index.scss' // global css
 import * as filters from './filters' // global filters
-import * as directives from './directive'
+import directives from './directive'
 
 import App from './App'
 import store from './store'
@@ -29,8 +29,10 @@ Vue.prototype.$api = api
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
+console.log(directives)
 // 自定义指令
 Object.keys(directives).forEach(key => {
+  console.log(key)
   Vue.directive(key, directives[key])
 })
 

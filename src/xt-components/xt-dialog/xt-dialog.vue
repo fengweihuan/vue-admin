@@ -18,7 +18,7 @@
     <slot></slot>
     <span slot="footer" class="dialog-footer" v-show="showfooter">
       <el-button class="dialog-footer-cancel" :size="size" @click="handleCancle" v-if="hasCancle">{{ cancleText }}</el-button>
-      <el-button type="primary" class="dialog-footer-sure" :size="size" @click="handleConfirm" :loading="loading">{{ confirmText }}</el-button>
+      <el-button type="primary" class="dialog-footer-sure" :size="size" @click="handleConfirm" :loading="loading" v-waves>{{ confirmText }}</el-button>
     </span>
   </el-dialog>
 </template>

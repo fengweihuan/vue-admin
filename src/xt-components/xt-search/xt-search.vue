@@ -34,14 +34,14 @@ export default {
       if (this.hasResetBtn) {
         return <div>
         <xt-form formList={searchList} options={options} enterSubmit={this.enterSubmit} contentWidth={'auto'} ref="form"></xt-form>
-        <el-button onClick={() => this.handleSubmit()} type="primary" size="small" icon="el-icon-search">查询</el-button>
-        <el-button  onClick={() => this.resetSubmit()} type="info" plain size="small">清空</el-button>
+        <el-button onClick={() => this.handleSubmit()} type="primary" size="small" v-waves icon="el-icon-search">查询</el-button>
+        <el-button  onClick={() => this.resetSubmit()} type="info" plain size="small" v-waves>清空</el-button>
         {this.$slots.default}
       </div>
       } else {
         return <div>
         <xt-form formList={searchList} options={options} enterSubmit={this.enterSubmit} contentWidth={'auto'} ref="form"></xt-form>
-        <el-button onClick={() => this.handleSubmit()} type="primary" size="small" icon="el-icon-search">查询</el-button>
+        <el-button onClick={() => this.handleSubmit()} type="primary" size="small" v-waves icon="el-icon-search">查询</el-button>
         {this.$slots.default}
       </div>
       }

@@ -5,6 +5,7 @@
       :searchList="searchList"
       :editFormList="editFormList"
       dialogTitle="材料"
+      height="calc(100vh - 190px)"
       getUrl="getMaterialData"
       createUrl="createMaterialData"
       editUrl="editMaterialData"
@@ -12,6 +13,9 @@
       :summary="['数量']"
       deleteId="材料编号"
     )
+      template(slot="button")
+        el-button(type="primary" size="small") solt button
+        el-button(type="danger" size="small") 按钮插槽
 </template>
 
 <script>
@@ -139,6 +143,11 @@ export default {
         }
       ],
       columns: [
+        {
+          type: 'index',
+          label: '序号',
+          width: '60'
+        },
         {
           prop: '材料编号',
           label: '材料编号'
