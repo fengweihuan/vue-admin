@@ -9,7 +9,6 @@ import XtEditDialog from '../xt-editDialog'
 import XtDragDialog from '../xt-dragDialog'
 import XtExport from '../xt-export'
 import XtCharts from '../xt-charts'
-import XtNewUnload from '../xt-newUnload'
 import XtTable from '../xt-table'
 import * as util from './util'
 
@@ -25,7 +24,6 @@ export const install = (Vue) => {
   Vue.component(XtDragDialog.name, XtDragDialog)
   Vue.component(XtExport.name, XtExport)
   Vue.component(XtCharts.name, XtCharts)
-  Vue.component(XtNewUnload.name, XtNewUnload)
   Vue.component(XtTable.name, XtTable)
   Vue.prototype.$info = (msg, title = '提示') => util.notify({ title: title, msg: msg, type: 'info' })
   Vue.prototype.$success = (msg, title = '成功') => util.notify({ title: title, msg: msg, type: 'success' })
@@ -50,7 +48,6 @@ export {
   XtDragDialog,
   XtExport,
   XtCharts,
-  XtNewUnload,
   XtTable
 }
 

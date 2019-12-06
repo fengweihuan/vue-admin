@@ -3,7 +3,7 @@ import request from '@/utils/request'
 export function getMaterialData(data) {
   return request({
     url: '/material/list',
-    method: 'post',
+    method: 'get',
     data
   })
 }
@@ -14,17 +14,17 @@ export function createMaterialData(data) {
     data
   })
 }
-export function editMaterialData(data) {
+export function editMaterialData(payload) {
+  const { _id, ...data } = payload
   return request({
-    url: '/material/edit',
+    url: `/material/${_id}`,
     method: 'post',
     data
   })
 }
 export function deleteMaterialData(id) {
   return request({
-    url: '/material/delete',
-    method: 'get',
-    params: { id }
+    url: `/material/${id}`,
+    method: 'post'
   })
 }

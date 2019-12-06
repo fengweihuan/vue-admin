@@ -204,7 +204,7 @@ export default {
     },
     searchHandle(params) {
       this.searchParams = params
-      this.$refs.pagination.change(1)
+      this.$refs.pagination.reset()
     },
     // 设置合计
     getSummaries (param) {

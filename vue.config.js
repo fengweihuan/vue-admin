@@ -40,7 +40,7 @@ module.exports = {
       // change xxx-api/login => mock/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       '/api': {
-        target: `http://yapi.demo.qunar.com/mock/90180/api/v1`,
+        target: `http://yapi.demo.qunar.com/mock/52404`,
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

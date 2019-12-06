@@ -4,8 +4,7 @@
       v-bind="$attrs" 
       @click="clickHandle"
       type="warning"
-      icon="iconfont icon-Icon-daoru"
-    ></el-button>
+    >外部导入</el-button>
     <el-dialog
       :title="text"
       :visible.sync="dialogVisible"
@@ -44,24 +43,20 @@
 <script>
 import { addData } from '@/utils/websoket.js'
 import { mapGetters } from 'vuex'
-import server from '@/server'
 export default {
   name: 'xt-upload',
   computed: {
-    ...mapGetters(['token', 'currentProject', 'server_id']),
+    ...mapGetters(['token', 'server_id']),
     headers () {
       return {
-        'X-Token': this.token,
-        'X-Project': this.currentProject.id
+        'X-Token': this.token
       }
     },
     action () {
       if (this.url && this.url.length > 0) {
-        const type = this.url.split('!')[0]
-        const url = this.url.split('!')[1]
-        return server[type] + url
+        return process.env.VUE_APP_BASE_API + url
       } else {
-        return server.data + 'data/FileUpload/upload'
+        return process.env.VUE_APP_BASE_API + 'data/FileUpload/upload'
       }
     },
     datas () {
@@ -225,14 +220,12 @@ export default {
 
 <style lang="scss">
 .upload_wrap {
+  display: inline-block;
   & +.el-button {
     margin-left: 10px;
   }
   .el-button + &{
     margin-left: 10px;
-  }
-  .iconfont{
-    font-size: 15px;
   }
   .dialog_main{
     .tips{

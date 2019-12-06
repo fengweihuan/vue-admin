@@ -7,9 +7,7 @@
 export default {
   name: 'User',
   data() {
-    return {
-
-    }
+    return { }
   },
   create() {
 

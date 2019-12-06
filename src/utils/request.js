@@ -1,29 +1,19 @@
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
-import server from '@/server'
 import { getToken } from '@/utils/auth'
 
 // create an axios instance
+console.log(process.env)
 const service = axios.create({
   // withCredentials: true, // send cookies when cross-domain requests
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000 // request timeout
 })
 
 // request interceptor
 service.interceptors.request.use(
   config => {
-    // do something before request is sent
-    const ruleArr = config.url.split('!')
-    let type, url
-    if (ruleArr.length === 1) {
-      type = 'default'
-      url = ruleArr[0]
-    } else {
-      type = config.url.split('!')[0]
-      url = config.url.split('!')[1]
-    }
-    config.url = server[type] + url
     if (store.getters.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key

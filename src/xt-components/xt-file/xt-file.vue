@@ -37,7 +37,6 @@
 <script>
 import xtDialog from '../xt-dialog'
 import xtExport from '../xt-export'
-import server from '@/server'
 import request from '@/utils/request'
 import qs from 'qs'
 import store from '@/store'
@@ -49,8 +48,7 @@ export default {
   },
   computed: {
     iframeUrl () {
-      // let baseUrl = 'http://bim10.xatasoft.com'
-      let baseUrl = server.fileUrl
+      let baseUrl = process.env.VUE_APP_BASE_API
       let url = ''
       if (this.fileType === 'pdf') {
         // url = `/static/pdfjs/web/viewer.html?file=${baseUrl + this.fileUrl}`
@@ -65,7 +63,6 @@ export default {
   },
   data () {
     return {
-      server: server,
       fileType: '',
       typeData: {
         img: ['jpg', 'jpeg', 'gif', 'png', 'bmp'],
@@ -111,7 +108,7 @@ export default {
           token
         }
         const queryStr = qs.stringify(params)
-        const src = server.fileUrl + this.fileUrl + '?' + queryStr
+        const src = process.env.VUE_APP_BASE_API + this.fileUrl + '?' + queryStr
         this.clickLink(src, params)
       } else {
         this.$warning('url不存在')

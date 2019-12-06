@@ -10,7 +10,6 @@
 <script>
 import qs from 'qs'
 import store from '@/store'
-import server from '@/server'
 import request from '@/utils/request'
 export default {
   name: 'xt-export',
@@ -75,7 +74,7 @@ export default {
           params: params
         }).then(res => {
           if (res.code === 0 && res.result.url.length > 0) {
-            let src = server.fileUrl + res.result.url
+            let src = process.env.VUE_APP_BASE_FILE_URL + res.result.url
             this.clickLink(src, params)
           }
           // loading.close()
@@ -83,7 +82,7 @@ export default {
           // loading.close()
         })
       } else {
-        const src = server[type] + url + '?' + queryStr
+        const src = process.env.VUE_APP_BASE_API + url + '?' + queryStr
         this.clickLink(src, params)
         // loading.close()
       }

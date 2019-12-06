@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import store from '../store'
-import server from '@/server'
 let ws, tt, lockReconnect
 const heartCheck = {
   timeout: 5000,
@@ -25,7 +24,7 @@ const heartCheck = {
 }
 const createWebSocket = (id) => {
   try {
-    ws = new WebSocket(server.websoket + 'f739cI5M6gbzGfS2950J2MF0wVnygHDfGRA6gvTeNQ/stat?uid=' + id)
+    ws = new WebSocket(process.env.VUE_APP_BASE_API + 'f739cI5M6gbzGfS2950J2MF0wVnygHDfGRA6gvTeNQ/stat?uid=' + id)
     init(id)
   } catch (e) {
     console.log('catch')

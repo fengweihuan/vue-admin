@@ -59,6 +59,10 @@ export default {
       }
       this.currentPage = currentPage
       this.$emit('change', { page: this.currentPage, pageSize: this.pageSize })
+    },
+    reset () {
+      this.currentPage = 1
+      this.$emit('change', { page: this.currentPage, pageSize: this.pageSize })
     }
   }
 }

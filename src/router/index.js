@@ -60,7 +60,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/user',
     children: [{
-      path: 'user',
+      path: 'index',
       name: 'user',
       component: () => import('@/views/user/index'),
       meta: { title: '用户管理', icon: 'el-icon-user-solid' }
@@ -72,7 +72,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/material',
     children: [{
-      path: 'material',
+      path: 'index',
       name: 'material',
       component: () => import('@/views/material/index'),
       meta: { title: '材料管理', icon: 'el-icon-eleme' }

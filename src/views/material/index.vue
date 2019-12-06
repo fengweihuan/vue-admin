@@ -11,10 +11,9 @@
       editUrl="editMaterialData"
       deleteUrl="deleteMaterialData"
       :summary="['数量']"
-      deleteId="材料编号"
     )
       template(slot="button")
-        el-button(type="primary" size="small") solt button
+        xt-upload(size="small" :condition="condition")
         el-button(type="danger" size="small") 按钮插槽
 </template>
 
@@ -55,40 +54,21 @@ export default {
       ],
       editFormList: [
         {
-          title: '材料编号',
-          type: 'input',
-          key: '材料编号',
-          rule: { required: true, message: '请输入材料编号', trigger: 'blur' },
-          props: {
-            'placeholder': '请输入材料编号'
-          }
-        },
-        {
           title: '材料名称',
           type: 'input',
-          key: '材料名称',
+          key: 'name',
           rule: { required: true, message: '请输入材料名称', trigger: 'blur' },
           props: {
             'placeholder': '请输入材料名称'
           }
         },
         {
-          title: '材料规格',
-          type: 'input',
-          key: '材料规格',
-          rule: { required: true, message: '请输入材料规格', trigger: 'blur' },
-          props: {
-            'placeholder': '请输入材料规格'
-          }
-        },
-        {
-          title: '材料类别',
+          title: '材料类型',
           type: 'select',
-          key: '材料类别',
-          rule: { required: true, message: '请选择材料类别', trigger: 'change' },
+          key: 'type',
+          rule: { required: true, message: '请选择材料类型', trigger: 'change' },
           props: {
-            'placeholder': '请选择材料类别',
-            filterable: true
+            'placeholder': '请输入材料类型'
           },
           options: [
             {
@@ -101,11 +81,10 @@ export default {
             }
           ]
         },
-        
         {
           title: '数量',
           type: 'input',
-          key: '数量',
+          key: 'number',
           rule: { required: true, message: '请输入数量', trigger: 'blur' },
           props: {
             'placeholder': '请输入数量',
@@ -117,25 +96,16 @@ export default {
         {
           title: '单位',
           type: 'input',
-          key: '单位',
+          key: 'unit',
           rule: { required: true, message: '请输入单位', trigger: 'blur' },
           props: {
             'placeholder': '请输入单位'
           }
         },
         {
-          title: '预计损耗比例',
-          type: 'input',
-          key: '预计损耗比例',
-          rule: { required: true, message: '请输入预计损耗比例', trigger: 'blur' },
-          props: {
-            'placeholder': '请输入预计损耗比例'
-          }
-        },
-        {
           title: '备注',
           type: 'input',
-          key: '备注',
+          key: 'desc',
           props: {
             'placeholder': '请输入备注',
             type: 'textarea'
@@ -149,36 +119,31 @@ export default {
           width: '60'
         },
         {
-          prop: '材料编号',
-          label: '材料编号'
-        },
-        {
-          prop: '材料名称',
+          prop: 'name',
           label: '材料名称',
           html({ row, $index }, prop) {
             return `<span>${row[prop]}</span>`
           }
         },
         {
-          prop: '材料规格',
-          label: '材料规格'
+          prop: 'type',
+          label: '材料类型'
         },
         {
-          prop: '数量',
+          prop: 'number',
           label: '数量'
         },
         {
-          prop: '单位',
+          prop: 'unit',
           label: '单位'
         },
         {
-          prop: '预计损耗比例',
-          label: '预计损耗比例'
-        },
-        {
-          prop: '备注',
+          prop: 'desc',
           label: '备注'
         }
+      ],
+      condition: [
+        { value: 'switch', label: '清空原有数据', select: false }
       ]
     }
   }
