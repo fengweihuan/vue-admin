@@ -11,6 +11,8 @@
       editUrl="editMaterialData"
       deleteUrl="deleteMaterialData"
       :summary="['数量']"
+      border
+      @row-click="rowClick"
     )
       template(slot="button")
         xt-upload(size="small" :condition="condition")
@@ -145,6 +147,11 @@ export default {
       condition: [
         { value: 'switch', label: '清空原有数据', select: false }
       ]
+    }
+  },
+  methods: {
+    rowClick(row, event, column) {
+      console.log(arguments)
     }
   }
 }

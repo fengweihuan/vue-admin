@@ -46,7 +46,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'xt-upload',
   computed: {
-    ...mapGetters(['token', 'server_id']),
+    ...mapGetters(['token']),
     headers () {
       return {
         'X-Token': this.token
@@ -62,7 +62,6 @@ export default {
     datas () {
       let data = {
         fileType: this.fileType,
-        server_id: this.server_id,
         ...this.params
       }
       if (this.condition && this.condition.length > 0) {

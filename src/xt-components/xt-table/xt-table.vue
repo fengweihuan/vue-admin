@@ -13,7 +13,8 @@
       @selection-change="handleSelectionChange"
       :show-summary="summary.length > 0"
       :summary-method="getSummaries"
-      border
+      v-bind="$attrs"
+      v-on="$listeners"
     )
       el-table-column(v-if="selection || deleteBatch" type="selection" width="60px" align="center")
       el-table-column(

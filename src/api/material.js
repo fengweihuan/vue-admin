@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
-export function getMaterialData(data) {
+export function getMaterialData(params) {
   return request({
     url: '/material/list',
     method: 'get',
-    data
+    params
   })
 }
 export function createMaterialData(data) {

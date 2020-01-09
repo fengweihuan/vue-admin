@@ -39,10 +39,10 @@ function init(id) {
   ws.onmessage = (response) => {
     heartCheck.reset().start(id)
     const res = JSON.parse(response.data)
-    if (res.data === 'open' && res.server_id) {
-      store.commit('SET_SERVER_ID', res.server_id)
-      return false
-    }
+    // if (res.data === 'open' && res.server_id) {
+    //   store.commit('SET_SERVER_ID', res.server_id)
+    //   return false
+    // }
     if (res.data) {
       if (res.data.status === 'complete') {
         store.commit('SET_INFODIALOG', false)
