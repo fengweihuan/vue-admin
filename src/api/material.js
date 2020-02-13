@@ -18,13 +18,13 @@ export function editMaterialData(payload) {
   const { _id, ...data } = payload
   return request({
     url: `/material/${_id}`,
-    method: 'post',
+    method: 'put',
     data
   })
 }
 export function deleteMaterialData(id) {
   return request({
     url: `/material/${id}`,
-    method: 'post'
+    method: 'delete'
   })
 }

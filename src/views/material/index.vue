@@ -15,7 +15,7 @@
       @row-click="rowClick"
     )
       template(slot="button")
-        xt-upload(size="small" :condition="condition")
+        xt-upload(size="small" url="/upload" :condition="condition")
         el-button(type="danger" size="small") 按钮插槽
 </template>
 
@@ -28,7 +28,7 @@ export default {
         {
           title: '',
           type: 'input',
-          key: '关键字',
+          key: 'q',
           props: {
             placeholder: '请输入关键字'
           }

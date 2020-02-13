@@ -54,7 +54,7 @@ export default {
     },
     action () {
       if (this.url && this.url.length > 0) {
-        return process.env.VUE_APP_BASE_API + url
+        return process.env.VUE_APP_BASE_API + this.url
       } else {
         return process.env.VUE_APP_BASE_API + 'data/FileUpload/upload'
       }

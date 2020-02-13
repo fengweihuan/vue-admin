@@ -172,6 +172,12 @@ export default {
     },
     // 确认提交
     async editSubmit(type, params) {
+      // 判断类型为input number类型 修改数据类型
+      this.editFormList.map(item => {
+        if (item.type === 'input' && item.props && item.props.type === 'number' && params[item.key]) {
+          params[item.key] = params[item.key] - 0
+        }
+      })
       if (type === 'create') {
         await this.$api[this.createUrl](params)
       } else {
