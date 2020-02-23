@@ -47,7 +47,7 @@ service.interceptors.response.use(
     // if the custom code is not 20000, it is judged as an error.
     if (res.code === -1) {
       Message({
-        message: res.msg || '未知错误',
+        message: res.message || '未知错误',
         type: 'error',
         duration: 2 * 1000
       })
@@ -65,15 +65,19 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.msg || '未知错误'))
+      return Promise.reject(new Error(res.message || '未知错误'))
     } else {
       return res
     }
   },
   error => {
-    console.log('err' + error) // for debug
+    console.dir(error) // for debug
+    let message
+    if (error.response.data && error.response.data.message) {
+      message = error.response.data.message
+    }
     Message({
-      message: error.message,
+      message: message || error.message,
       type: 'error',
       duration: 2 * 1000
     })

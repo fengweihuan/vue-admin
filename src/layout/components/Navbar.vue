@@ -7,7 +7,7 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar shape="circle" :src="userinfo.avatar || avatar" size="small" :srcSet="avatar"></el-avatar>
+          <el-avatar shape="circle" :src="avatar" size="small" :srcSet="avatar"></el-avatar>
           <span>{{ userinfo.username }}</span>
           <i class="el-icon-caret-bottom" />
         </div>
@@ -30,7 +30,7 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import avatar from '@/assets/images/avatar.png'
+import default_avatar from '@/assets/images/avatar.png'
 export default {
   components: {
     Breadcrumb,
@@ -40,11 +40,13 @@ export default {
     ...mapGetters([
       'sidebar',
       'userinfo'
-    ])
-  },
-  data() {
-    return {
-      avatar
+    ]),
+    avatar() {
+      if (this.userinfo.avatar) {
+        return process.env.VUE_APP_BASE_FILE_URL + this.userinfo.avatar
+      } else {
+        return default_avatar
+      }
     }
   },
   methods: {
@@ -52,7 +54,8 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      await this.$store.dispatch('user/logout')
+      // await this.$store.dispatch('user/logout')
+      await this.$store.dispatch('user/resetToken')
       location.reload()
     }
   }

@@ -42,7 +42,6 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-
   {
     path: '/',
     component: Layout,
@@ -58,7 +57,7 @@ export const constantRoutes = [
   {
     path: '/user',
     component: Layout,
-    redirect: '/user',
+    redirect: '/user/index',
     children: [{
       path: 'index',
       name: 'user',
@@ -70,7 +69,7 @@ export const constantRoutes = [
   {
     path: '/material',
     component: Layout,
-    redirect: '/material',
+    redirect: '/material/index',
     children: [{
       path: 'index',
       name: 'material',
@@ -83,7 +82,7 @@ export const constantRoutes = [
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })
