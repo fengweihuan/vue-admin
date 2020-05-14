@@ -105,11 +105,11 @@ export default {
     handleClose () {
       if (this.loading) return
       this.$emit('close')
+      this.$emit('input', false)
       this.dialog = false
     },
     handleConfirm () {
       if (this.autoclose) {
-        // this.$emit('input', this.dialog)
         this.handleClose()
       }
       this.$emit('confirm')
