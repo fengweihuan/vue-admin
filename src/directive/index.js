@@ -1,4 +1,6 @@
 import waves from './waves/waves.js'
+import conrner from './conrner/conrner.js'
+import drag from './drag/drag.js'
 const loadmore = {
   bind(el, binding) {
     const selectWrap = el.querySelector('.el-table__body-wrapper')
@@ -11,4 +13,4 @@ const loadmore = {
     })
   }
 }
-export default { waves, loadmore }
+export default { waves, loadmore, conrner, drag }
