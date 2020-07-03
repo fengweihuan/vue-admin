@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
       <h3 class="title"></h3>
-      <div class="form_wrap">
+      <div class="form_wrap animated bounceInDown">
         <p class="tips">用户登录</p>
         <el-form-item prop="username">
           <span class="iconfont icon-geren"></span>

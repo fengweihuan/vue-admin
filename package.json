@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "crypto-js": "^4.0.0",
     "dayjs": "^1.8.16",
     "echarts": "^4.2.1",
     "element-ui": "latest",
