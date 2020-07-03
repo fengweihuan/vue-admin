@@ -1,5 +1,5 @@
 import waves from './waves/waves.js'
-import conrner from './conrner/conrner.js'
+import corner from './corner/corner.js'
 import drag from './drag/drag.js'
 const loadmore = {
   bind(el, binding) {
@@ -13,4 +13,4 @@ const loadmore = {
     })
   }
 }
-export default { waves, loadmore, conrner, drag }
+export default { waves, loadmore, corner, drag }
