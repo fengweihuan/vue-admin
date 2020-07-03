@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
@@ -25,32 +26,37 @@ const mutations = {
 const actions = {
   // user login
   login({ commit }, userInfo) {
-    const { username, password } = userInfo
+    // const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        const { result } = response
-        commit('SET_TOKEN', result.token)
-        setToken(result.token)
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
+      commit('SET_TOKEN', 'result.token')
+      setToken('result.token')
+      resolve()
+      // login({ username: username.trim(), password: password }).then(response => {
+      //   const { result } = response
+      //   commit('SET_TOKEN', result.token)
+      //   setToken(result.token)
+      //   resolve()
+      // }).catch(error => {
+      //   reject(error)
+      // })
     })
   },
 
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo().then(response => {
-        const { result } = response
-        if (!result) {
-          reject('Verification failed, please Login again.')
-        }
-        commit('SET_USEINFO', result)
-        resolve(result)
-      }).catch(error => {
-        reject(error)
-      })
+      commit('SET_USEINFO', { username: '111' })
+      resolve({ username: '111' })
+      // getInfo().then(response => {
+      //   const { result } = response
+      //   if (!result) {
+      //     reject('Verification failed, please Login again.')
+      //   }
+      //   commit('SET_USEINFO', result)
+      //   resolve(result)
+      // }).catch(error => {
+      //   reject(error)
+      // })
     })
   },
 
