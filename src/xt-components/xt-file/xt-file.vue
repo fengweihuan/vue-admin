@@ -140,7 +140,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .file_dialog{
-  /deep/ .el-dialog__body{
+  ::v-deep .el-dialog__body{
     overflow: hidden;
   }
 }

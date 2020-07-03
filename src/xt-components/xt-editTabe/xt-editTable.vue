@@ -250,12 +250,12 @@ export default {
     line-height: 1.2;
     justify-content: space-around;
   }
-  /deep/ thead .el-table-column--selection {
+  ::v-deep thead .el-table-column--selection {
     .cell{
       top: 15px;
     }
   }
-  /deep/ .el-input {
+  ::v-deep .el-input {
     .el-input__icon{
       color: #409EFF;
     }
